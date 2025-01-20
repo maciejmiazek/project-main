@@ -1,0 +1,138 @@
+.workers-panel-box {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 3%;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	width: 25%;
+	width: 400px;
+	height: 500px;
+	font-family: Poppins, sans-serif;
+	overflow: auto;
+	background-color: #444;
+	border: 3px solid #222;
+}
+
+.workers-panel-action-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 10%;
+}
+
+.workers-panel-action-buttons button {
+	width: 50%;
+	height: 100%;
+	cursor: pointer;
+	background: none;
+	border: none;
+	border-bottom: 3px solid #222;
+	font-size: 20px;
+	font-weight: bold;
+	color: whitesmoke;
+}
+
+.workers-panel-action-buttons button:first-child {
+	border-right: 3px solid #222;
+}
+
+.workers-panel-box form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 90%;
+}
+
+.form-bulk{
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	width: 90%;
+	min-height: 50px;
+	margin: 10px 0;
+	background-color: #222;
+	border-radius: 5px;
+	padding: 10px 10px;
+}
+
+.form-bulk .input-name{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 100%;
+}
+
+.form-bulk .input-choose{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 100%;
+	font-weight: bold;
+}
+
+.form-bulk .input-choose input,select{
+	width: 70%;
+	height: 20px;
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+	border-bottom: 3px solid #555;
+	margin-top: 1px;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	font-family: Poppins, sans-serif;
+}
+
+select{
+	background-color: #535353;
+	margin: 0 5px;
+}
+
+input:focus {
+	outline: none;
+	border: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
+.form-bulk p{
+	margin: 0;
+	font-weight: bold;
+}
+
+form button{
+	width: 100%;
+	height: 10%;
+	cursor: pointer;
+	background: none;
+	border: none;
+	border: 3px solid #222;
+	background-color: #666;
+	font-weight: bold;
+	font-size: 16px;
+	width: 70%;
+	margin-top: 10px;
+	font-size: 20px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: whitesmoke;
+}
+
+.workers-panel-box button.active{
+	background-color: #222;
+}

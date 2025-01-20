@@ -13,7 +13,7 @@ const Finanse = () => <h2>Finanse</h2>;
 
 function App() {
 	return (
-		<BrowserRouter>
+		<>
 			<Sidebar />
 			<main style={{ flex: 1}}>
 				<Routes>
@@ -51,7 +51,7 @@ function App() {
 					/>
 				</Routes>
 			</main>
-		</BrowserRouter>
+		</>
 	);
 }
 

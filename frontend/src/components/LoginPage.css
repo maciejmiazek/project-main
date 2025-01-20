@@ -1,0 +1,44 @@
+.login-page {
+	display: flex;
+	flex-direction: column;
+	padding: 100px 30px;
+	width: 25%;
+	min-width: 400px;
+	background-color: #555;
+	text-transform: uppercase;
+	border: 3px solid #222;
+	color: whitesmoke;
+}
+
+.login-page input{
+	width: 80%;
+	height: 40px;
+	margin: 10px 0;
+	padding: 5px;
+	border-radius: 10px;
+	border: 3px solid #333;
+	text-align: center;
+	font-weight: bold;
+	font-family: poppins, sans-serif;
+}
+
+.login-page h1{
+	margin: 0;
+	margin-top: 20px;
+	font-family: poppins, sans-serif;
+}
+
+.login-page form{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 0;
+}
+
+.login-page button{
+	color: white;
+	border-radius: 10px;
+	height: 40px;
+	width: 50%;
+}
