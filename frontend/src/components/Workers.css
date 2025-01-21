@@ -1,8 +1,44 @@
 .workers {
+	position: relative;
 	display: flex;
 	width: 100%;
 	height: 100%;
 	font-family: Poppins, sans-serif;
+	overflow: hidden;
+}
+
+.workers-alert {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: -80px;
+	width: 100%;
+	height: 80px;
+	font-family: Poppins, sans-serif;
+	background-color: #23CE65;
+	font-size: 24px;
+	font-weight: bold;
+	transition: 3s ease;
+}
+  
+@keyframes slideIn {
+	0% {
+		bottom: -80px;
+	}
+	20%{
+		bottom: 0px;
+	}
+	80%{
+		bottom: 0px;
+	}
+	100% {
+		bottom: -80px;
+	}
+}
+
+.workers-alert.show {
+	animation: slideIn 3s ease forwards;
 }
 
 .workers-main {
@@ -29,7 +65,7 @@
 	align-items: center;
 	flex-direction: column;
 	width: 300px;
-	height: 450px;
+
 	background-color: #222222;
 	border-radius: 10px;
 	margin: 20px;
@@ -46,6 +82,7 @@
 	width: 100%;
 	height: 35%;
 	background-color: #333;
+	padding: 15px 0;
 }
 
 .status-box{
@@ -72,12 +109,12 @@
 .worker-items {
 	position: relative;
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	height: 65%;
 	background-color: #555;
+	padding: 10px 0;
 }
 
 .circle{
@@ -104,14 +141,16 @@
 }
 
 .delete-option{
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 10%;
+	bottom: 5px;
+	width: 60%;
+	height: 30px;
 	background-color: tomato;
 	cursor: pointer;
 	font-weight: bold;
 	border: none;
+	text-transform: uppercase;
 	display: none;
 	color: white;
+	border-radius: 10px;
+	border: 3px solid #222;
 }

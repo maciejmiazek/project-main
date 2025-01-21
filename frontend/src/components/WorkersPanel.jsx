@@ -2,14 +2,14 @@ import { React, useState, useEffect } from "react";
 import "./WorkersPanel.css";
 import axios from "axios";
 
-function WorkersPanel({activeButton, buttonChangeClick, buttonText}) {
+function WorkersPanel({activeButton, buttonChangeClick, buttonText, fetchAPI, setAlertText, setAlertIsVisible}) {
 	const [formData, setFormData] = useState({
 		name: '',
 		phone: '',
 		machine: [],
 		salary: 0,
-		startWorkTime: '',
-		endWorkTime: '',
+		startWorkTime: '6:00',
+		endWorkTime: '16:00',
 	});
 	const [message, setMessage] = useState('');
 	
@@ -18,18 +18,24 @@ function WorkersPanel({activeButton, buttonChangeClick, buttonText}) {
 	};
 
 	const handleSubmit = async (e) => {
+		e.preventDefault()
 		if (activeButton !== 0) {
 			return;
 		}
-		e.preventDefault()
 	
 		try {
 		  // Wysyłanie danych do serwera za pomocą axios
-		  const response = await axios.post('http://localhost:3000/api/pracownicy', formData);
+		  const response = await axios.post('/api/pracownicy', formData);
 	
 		  // Obsługa odpowiedzi z serwera
 		  if (response.status === 200) {
-			setMessage(`Sukces: ${response.data.message}`);
+			console.log(response.data);
+			setAlertText(response.data.message);
+			setAlertIsVisible(true);
+			fetchAPI();
+			setTimeout(() => {
+				setAlertIsVisible(false);
+			}, 3000);
 		  }
 		} catch (error) {
 		  // Obsługa błędów
@@ -49,7 +55,7 @@ function WorkersPanel({activeButton, buttonChangeClick, buttonText}) {
 			</div>
 			<form onSubmit={handleSubmit}>
 				<div className="form-bulk">
-					<div className="input-name"><p>Imie i Nazwisko</p></div>
+					<div className="input-name"><p>Imię i Nazwisko</p></div>
 					<div className="input-choose">
 						<input type="text" name="name" value={formData.name} onChange={handleChange} required/>
 					</div>
@@ -102,4 +108,3 @@ function WorkersPanel({activeButton, buttonChangeClick, buttonText}) {
 }
 
 export default WorkersPanel;
-export const myVariable = 'Hello from config.js!';

@@ -10,6 +10,9 @@ function Workers() {
 	const [users, setUsers] = useState([]);
 	const [activeButton, setActiveButton] = useState(0);
 	const [buttonText, setButtonText] = useState('Dodaj');
+	const [message, setMessage] = useState('');
+	const [alertText, setAlertText] = useState('');
+	const [alertIsVisible, setAlertIsVisible] = useState(false);
 
 	const buttonChangeClick = (index) => {
 		setButtonText(index === 0 ? 'Dodaj' : 'Edytuj');
@@ -20,20 +23,43 @@ function Workers() {
 
 	const fetchAPI = async () => {
 		axios
-			.get("/api")
-			.then((users) => setUsers(users.data))
-			.catch((err) => console.log(err));
+		.get("/api/pracownicy")
+		.then((users) => {
+			setUsers(users.data)
+		})
+		.catch((err) => console.log(err));
+	};
+
+	const deleteWorker = async (i) => {
+		if (activeButton !== 1) {
+			return
+		}
+
+		const objectId = users[i]._id
+
+		try {
+			// Wysyłanie danych do serwera za pomocą axios
+			const response = await axios.post('/api/pracownicy', {objectId: objectId});
+	  
+			// Obsługa odpowiedzi z serwera
+			if (response.status === 200) {
+			  console.log(response.data);
+			  setAlertText(response.data.message);
+			  setAlertIsVisible(true);
+			  fetchAPI();
+			  setTimeout(() => {
+				setAlertIsVisible(false);
+			  }, 3000);
+			}
+
+		  } catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
 		fetchAPI();
 	}, []);
-
-	function minutesToTime(minutes) {
-		const hours = Math.floor(minutes / 60);
-		const mins = minutes % 60;
-		return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
-	}
 
 	const buttonStyle = {
 		display: activeButton === 1 ? 'block' : 'none'
@@ -53,16 +79,17 @@ function Workers() {
 							<p>{item.name}</p>
 						</div>
 						<div className="worker-items">
-							<div className="item-option"><p>Czas Pracy</p><p>{`${minutesToTime(item.startWorkTime)} - ${minutesToTime(item.endWorkTime)}`}</p></div>
+							<div className="item-option"><p>Czas Pracy</p><p>{`${item.startWorkTime} - ${item.endWorkTime}`}</p></div>
 							<div className="item-option"><p>Pensja</p><p>{`${item.salary} PLN`}</p></div>
 							<div className="item-option"><p>Telefon</p><p>{item.phone}</p></div>
 							<div className="item-option"><p>Przydzielona Maszyna</p><p>{item.machine}</p></div>
-							<button className="delete-option" style={buttonStyle}>Delete</button>
+							<button className="delete-option" onClick={() => {deleteWorker(i)} } style={buttonStyle}>Delete</button>
 						</div>
 					</div>)
 				})}
 			</div>
-			<WorkersPanel activeButton={activeButton} buttonChangeClick={buttonChangeClick} buttonText={buttonText}/>
+			<WorkersPanel activeButton={activeButton} buttonChangeClick={buttonChangeClick} buttonText={buttonText} fetchAPI={fetchAPI} setAlertText={setAlertText} setAlertIsVisible={setAlertIsVisible}/>
+			<div className={`workers-alert ${alertIsVisible ? 'show' : ''}`}><p>{alertText}</p></div>
 		</div>
 	);
 }
