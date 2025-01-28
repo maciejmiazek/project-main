@@ -5,17 +5,16 @@ import "./LoginPage.css";
 function LoginPage() {
 	const navigate = useNavigate();
 
-	const handleRedirect = (e) => {
-		e.preventDefault()
+	const handleRedirect = () => {
 		navigate("/planowanie")
-	}
+	};
 
 	return (
 		<div className='login-page'>
 			<h1>Logowanie</h1>
 			<form onSubmit={handleRedirect}>
-				<input type="text" name="login" id="login" placeholder="Login" />
-				<input type="password" name="pass" id="password" placeholder="Hasło" />
+				<input type="text" id="login" placeholder="Login" />
+				<input type="password" id="password" placeholder="Hasło" />
 				<button type="submit">Zaloguj</button>
 			</form>
 		</div>

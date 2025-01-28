@@ -8,6 +8,8 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:3000', // Proxy dla backendu
       '/api/pracownicy': 'http://localhost:3000',
+      '/api/maszyny': 'http://localhost:3000',
+      '/api/planowanie': 'http://localhost:3000',
     },
   },
 })

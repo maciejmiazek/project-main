@@ -5,9 +5,9 @@ import "./index.css";
 import "./App.css";
 import Planning from "./components/Planning";
 import Workers from "./components/Workers";
+import Machines from "./components/Machines";
 import NoPage from "./components/NoPage";
 
-const Maszyny = () => <h2>Maszyny</h2>;
 const Magazyn = () => <h2>Magazyn</h2>;
 const Finanse = () => <h2>Finanse</h2>;
 
@@ -31,7 +31,7 @@ function App() {
 					/>
 					<Route
 						path='/maszyny'
-						element={<Maszyny />}
+						element={<Machines />}
 					/>
 					<Route
 						path='/magazyn'

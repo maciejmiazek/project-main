@@ -72,7 +72,7 @@ function Sidebar() {
 				</nav>
 			</div>
 			<div className='logout'>
-				<Link to='/wyloguj'>
+				<Link to='/'>
 					<button className='nav-item'>
 						<IconLogout stroke={2} />
 						Wyloguj

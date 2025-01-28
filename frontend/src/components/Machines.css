@@ -123,15 +123,42 @@
 	font-weight: bold;
 }
 
-.circle{
+.img-box{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 5px;
-	width: 75px;
-	height: 75px;
-	border: 3px solid white;
-	border-radius: 50%;
+	width: 85%;
+	height: 140px;
+	border: 3px solid #222;
+}
+
+.img-box img{
+	width: 100%;
+	height: 100%;
+}
+
+.img-box svg{
+	width: 75%;
+	height: 75%;
+}
+
+.avatar-text{
+	position: absolute;
+	bottom: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	height: 20%;
+	background-color: #111;
+	border-radius: 5px;
+}
+
+.avatar-text p{
+	margin: 0;
+	color: white;
+	font-size: 14px;
+	font-family: Poppins, sans-serif;
 }
 
 .circle svg{

@@ -1,0 +1,186 @@
+.planning {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+  }
+  
+  /* Sekcja z przyciskami i nawigacją */
+  .calendar {
+	width: 85%;
+	height: 70%;
+	background-color: #111;
+	border: 5px solid #111;
+  }
+  
+  .button-bar {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+  }
+  
+  .button-bar p {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	font-weight: bold;
+	width: 150px;
+	text-transform: capitalize;
+	color: #fff;
+  }
+  
+  .button-bar button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	background: none;
+	margin: 0 20px;
+	cursor: pointer;
+	color: white;
+  }
+
+  .calendar-body {
+	width: 100%;
+	height: calc(100% - 50px);
+	background-color: aliceblue;
+	overflow: auto;
+  }
+  
+  /* Tabela-kontener na poszczególne wiersze (dni oraz użytkowników) */
+  .calendar-table {
+	width: 100%;
+	height: 100%;
+	display: table;
+	border-collapse: collapse; /* żeby kolumny/wiersze wyglądały spójniej */
+  }
+  
+  /* Wiersz dla nagłówka z dniami */
+  .day-row {
+	position: sticky;
+	top: 0;
+	display: table-row;
+	padding: 0.5rem;
+	background-color:#222;
+	color: #fff;
+  }
+  
+  /* Wiersz dla poszczególnych użytkowników (lub innych elementów) */
+  .user-row {
+	display: table-row;
+	background-color: #fafafa;
+	color: #000;
+  }
+  
+  /* Pojedyncza komórka (zarówno w wierszach dni, jak i użytkowników) */
+  .grid-box {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	border-left: 2px solid #222;
+	border-right: 2px solid #222;
+	font-weight: bold;
+  }
+  
+  /* Pierwsza komórka w day-row (np. etykieta "Dzień") */
+  .day-row .grid-box:first-child {
+	background-color: #222;
+	padding: 0.5rem;
+	color: #fff;
+	font-weight: bold;
+  }
+  
+  /* Pierwsza komórka w user-row (nazwa użytkownika / elementu) */
+  .user-row .grid-box:first-child {
+	background-color: #222;
+	padding: 0.5rem;
+	color: #fff;
+	width: 150px; /* Możesz dopasować do potrzeb */
+  }
+  
+  /* Pasek (np. zadania, eventy) wewnątrz każdej komórki */
+  .bar {
+	width: 100%;
+	height: 50%;
+	background-color: #2EA6FC;
+	border-top: 2px solid #222;
+	border-bottom: 2px solid #222;
+	cursor: pointer;
+  }
+  
+  /* Panel do planowania (przyciski, formularz) – pozostaje z oryginału */
+  .planning-panel {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 85%;
+	height: 15%;
+	background-color: #444;
+	border: 4px solid #222;
+  }
+  
+  .planning-panel button {
+	position: absolute;
+	top: -50px;
+	height: 50px;
+	background-color: #444;
+	border: 4px solid #222;
+	font-weight: bold;
+	cursor: pointer;
+	color: white;
+  }
+  
+  .panel-task {
+	width: 20%;
+	left: -4px;
+  }
+  
+  .new-task {
+	width: 10%;
+	right: 10%;
+  }
+  
+  .edit-task {
+	width: 10%;
+	right: -4px;
+  }
+  
+  .planning-panel form {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	font-weight: bold;
+  }
+  
+  .planning-panel form div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 20%;
+	height: 100%;
+  }
+  
+  .planning-panel form div p {
+	margin-top: 0;
+	margin-bottom: 5px;
+  }
+  
+  .planning-panel form input {
+	height: 20%;
+  }
+  
+  .planning-panel form button {
+	position: absolute;
+	top: 110px;
+	right: -4px;
+	width: 10%;
+	margin: 0;
+}
