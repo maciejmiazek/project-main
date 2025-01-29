@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useCrud from "./hooks/UseCrud";
-import axios from "axios";
 import {
 	IconArrowBigLeftFilled,
 	IconArrowBigRightFilled,
@@ -10,38 +9,12 @@ import "./Planning.css";
 function Planning() {
 	const { data: itemData } = useCrud("/api/pracownicy");
 	const { data: machineData } = useCrud("/api/maszyny");
-	const { data: planningData, createHandle } = useCrud("/api/planowanie");
+	const { data: planningData, createHandle, deleteData, activeButton, setActiveButton, alertText, alertIsVisible, formData, setFormData, cardId, setCardId, endpoint } = useCrud("/api/planowanie");
 
-	const createData = async (e) => {
-		e.preventDefault()
-		try {
-			const response = await axios.post(`/api/planowanie`, formData);
-	  
-			if (response.status === 200) {
-			  console.log(response.data);
-			  setAlertText(response.data.message);
-			  setAlertIsVisible(true);
-			  fetchData();
-			  setTimeout(() => {
-				  setAlertIsVisible(false);
-			  }, 3000);
-			}
-		} catch (e) {
-			console.log(e);
-		}
-	}
-
+	const [buttonText, setButtonText] = useState('Dodaj');
 	const [currentDate, setCurrentDate] = useState(new Date());
-
+	
 	const colorPalette = ["#2EA6FC", "#23CE65", "#FCDA51"];
-
-	const [formData, setFormData] = useState({
-		workerId: "",
-		startDate: "",
-		endDate: "",
-		description: "",
-		machineId: "",
-	});
 
 	// Funkcja do generowania 7 kolejnych dni
 	const getDaysInRange = (startDate, daysToShow = 7) => {
@@ -73,11 +46,37 @@ function Planning() {
 	}
 
 	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		const clearEndpoint = endpoint.split('/')[2]
+		
+		if (clearEndpoint === 'planowanie') {
+			setFormData((prev) => ({
+				...prev,
+				'planowanie': {
+					  ...prev.planowanie,
+					  [e.target.name]: e.target.value
+				},
+			}));
+		}
+	};
+
+	const buttonChangeClick = (index) => {
+		setButtonText(index === 0 ? 'Dodaj' : 'Edytuj');
+		if (activeButton === null || activeButton !== index) {
+			setActiveButton(index);
+			
+			setFormData((prev) => ({
+				...prev,
+				planowanie: {
+				  ...prev.planowanie,
+				},
+			}));
+			console.log(formData);
+			setCardId(null)
+		}
 	};
 
 	return (
-		<div className='planning'>
+		<>
 			{/* Kalendarz */}
 			<div className='calendar'>
 				<div className='button-bar'>
@@ -159,6 +158,7 @@ function Planning() {
 											<div
 												className='grid-box'
 												key={index}
+												data={userPlans._id}
 											>
 												{isPlanned && (
 													<div
@@ -179,10 +179,10 @@ function Planning() {
 			{/* Panel dodawania/edycji zadań */}
 			<div className='planning-panel'>
 				<button className='panel-task'>Zadanie</button>
-				<button className='new-task'>Dodaj</button>
-				<button className='edit-task'>Edytuj</button>
+				<button className='new-task' onClick={() => buttonChangeClick(0)}>Dodaj</button>
+				<button className='edit-task'onClick={() => buttonChangeClick(1)}>Edytuj</button>
 
-				<form onSubmit={createData}>
+				<form onSubmit={createHandle}>
 					<div className='worker-col'>
 						<p>Pracownik</p>
 						<select
@@ -190,7 +190,7 @@ function Planning() {
 							value={formData.workerId}
 							onChange={handleChange}
 						>
-							<option>Wybierz Pracownika</option>
+							<option>Wybierz</option>
 							{itemData.map((item, index) => (
 								<option
 									key={index}
@@ -203,7 +203,7 @@ function Planning() {
 					</div>
 
 					<div className='start-date-col'>
-						<p>Data Rozpoczęcia</p>
+						<p>Rozpoczęcie</p>
 						<input
 							type='date'
 							value={formData.startDate}
@@ -213,7 +213,7 @@ function Planning() {
 					</div>
 
 					<div className='end-date-col'>
-						<p>Data Końca</p>
+						<p>Koniec</p>
 						<input
 							type='date'
 							value={formData.endDate}
@@ -223,10 +223,10 @@ function Planning() {
 					</div>
 
 					<div className='machine-col'>
-						<p>Maszyny</p>
+						<p>Maszyna</p>
 						<select name='machineId' value={formData.machineId} onChange={handleChange}>
 							<option>
-								Wybierz maszynę
+								Wybierz
 							</option>
 							{machineData.map((item, index) => (
 								<option
@@ -245,15 +245,16 @@ function Planning() {
 							name='description'
 							value={formData.description}
 							onChange={handleChange}
-							cols='25'
-							rows='5'
 						></textarea>
 					</div>
 
-					<button type='submit'>Dodaj</button>
+					<div className='submit-col'>
+						<button type='submit'>{buttonText}</button>
+					</div>
+
 				</form>
 			</div>
-		</div>
+		</>
 	);
 }
 

@@ -1,29 +1,20 @@
-.planning {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: column;
-  }
-  
-  /* Sekcja z przyciskami i nawigacją */
-  .calendar {
-	width: 85%;
+/* Sekcja z przyciskami i nawigacją */
+.calendar {
+	width: 90%;
 	height: 70%;
 	background-color: #111;
-	border: 5px solid #111;
-  }
-  
-  .button-bar {
+	border: 4px solid #111;
+}
+
+.button-bar {
 	width: 100%;
 	height: 50px;
 	display: flex;
 	justify-content: center;
 	align-content: center;
-  }
-  
-  .button-bar p {
+}
+
+.button-bar p {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -32,9 +23,9 @@
 	width: 150px;
 	text-transform: capitalize;
 	color: #fff;
-  }
-  
-  .button-bar button {
+}
+
+.button-bar button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -43,88 +34,93 @@
 	margin: 0 20px;
 	cursor: pointer;
 	color: white;
-  }
+}
 
-  .calendar-body {
+.calendar-body {
 	width: 100%;
 	height: calc(100% - 50px);
 	background-color: aliceblue;
 	overflow: auto;
-  }
-  
-  /* Tabela-kontener na poszczególne wiersze (dni oraz użytkowników) */
-  .calendar-table {
+}
+
+/* Tabela-kontener na poszczególne wiersze (dni oraz użytkowników) */
+.calendar-table {
 	width: 100%;
 	height: 100%;
 	display: table;
-	border-collapse: collapse; /* żeby kolumny/wiersze wyglądały spójniej */
-  }
-  
-  /* Wiersz dla nagłówka z dniami */
-  .day-row {
+	border-collapse: collapse;
+	/* żeby kolumny/wiersze wyglądały spójniej */
+}
+
+/* Wiersz dla nagłówka z dniami */
+.day-row {
 	position: sticky;
 	top: 0;
 	display: table-row;
 	padding: 0.5rem;
-	background-color:#222;
+	background-color: #222;
 	color: #fff;
-  }
-  
-  /* Wiersz dla poszczególnych użytkowników (lub innych elementów) */
-  .user-row {
+}
+
+/* Wiersz dla poszczególnych użytkowników (lub innych elementów) */
+.user-row {
 	display: table-row;
 	background-color: #fafafa;
+	padding: 0.5rem;
 	color: #000;
-  }
-  
-  /* Pojedyncza komórka (zarówno w wierszach dni, jak i użytkowników) */
-  .grid-box {
+}
+
+/* Pojedyncza komórka (zarówno w wierszach dni, jak i użytkowników) */
+.grid-box {
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
-	border-left: 2px solid #222;
-	border-right: 2px solid #222;
+	border-left: 3px solid #222;
+	border-right: 3px solid #222;
 	font-weight: bold;
-  }
-  
-  /* Pierwsza komórka w day-row (np. etykieta "Dzień") */
-  .day-row .grid-box:first-child {
+}
+
+/* Pierwsza komórka w day-row (np. etykieta "Dzień") */
+.day-row .grid-box:first-child {
 	background-color: #222;
 	padding: 0.5rem;
 	color: #fff;
 	font-weight: bold;
-  }
-  
-  /* Pierwsza komórka w user-row (nazwa użytkownika / elementu) */
-  .user-row .grid-box:first-child {
+}
+
+/* Pierwsza komórka w user-row (nazwa użytkownika / elementu) */
+.user-row .grid-box:first-child {
 	background-color: #222;
 	padding: 0.5rem;
 	color: #fff;
-	width: 150px; /* Możesz dopasować do potrzeb */
-  }
-  
-  /* Pasek (np. zadania, eventy) wewnątrz każdej komórki */
-  .bar {
+	width: 150px;
+	/* Możesz dopasować do potrzeb */
+}
+
+/* Pasek (np. zadania, eventy) wewnątrz każdej komórki */
+.bar {
 	width: 100%;
-	height: 50%;
+	height: 45px;
 	background-color: #2EA6FC;
-	border-top: 2px solid #222;
-	border-bottom: 2px solid #222;
+	border-top: 3px solid #222;
+	border-bottom: 3px solid #222;
 	cursor: pointer;
-  }
-  
-  /* Panel do planowania (przyciski, formularz) – pozostaje z oryginału */
-  .planning-panel {
+}
+
+/* Panel do planowania (przyciski, formularz) – pozostaje z oryginału */
+.planning-panel {
 	position: relative;
 	display: flex;
 	justify-content: center;
-	width: 85%;
-	height: 15%;
+	width: 90%;
+	height: 13%;
 	background-color: #444;
 	border: 4px solid #222;
-  }
-  
-  .planning-panel button {
+}
+
+.planning-panel .panel-task,
+.new-task,
+.edit-task {
 	position: absolute;
 	top: -50px;
 	height: 50px;
@@ -133,54 +129,88 @@
 	font-weight: bold;
 	cursor: pointer;
 	color: white;
-  }
-  
-  .panel-task {
+	font-size: 18px;
+	font-family: Poppins, sans-serif;
+}
+
+.panel-task {
 	width: 20%;
 	left: -4px;
-  }
-  
-  .new-task {
+}
+
+.new-task {
 	width: 10%;
 	right: 10%;
-  }
-  
-  .edit-task {
+}
+
+.edit-task {
 	width: 10%;
 	right: -4px;
-  }
-  
-  .planning-panel form {
+}
+
+.planning-panel form {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
 	font-weight: bold;
-  }
-  
-  .planning-panel form div {
+}
+
+.planning-panel form div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	width: 20%;
+	width: 17%;
 	height: 100%;
-  }
-  
-  .planning-panel form div p {
+}
+
+.planning-panel form div p {
 	margin-top: 0;
-	margin-bottom: 5px;
-  }
-  
-  .planning-panel form input {
+	margin-bottom: 2px;
+}
+
+.planning-panel form input {
 	height: 20%;
-  }
-  
-  .planning-panel form button {
-	position: absolute;
-	top: 110px;
-	right: -4px;
-	width: 10%;
+}
+
+.planning-panel form textarea {
+	max-width: 100%;
+	width: 85% !important;
+}
+
+.submit-col button {
+	position: relative;
+	width: 80%;
 	margin: 0;
+	margin-top: 24px;
+	height: 50px;
+	width: 85%;
+}
+
+.planning-panel select, textarea{
+	height: 50px !important;
+	width: 85% !important;
+	border-radius: 5px;
+	background-color: #222;
+	border: none;
+	border: 2px solid #111;
+	text-align: center;
+}
+
+input[type="date"] {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #222;
+    color: white !important;
+	height: 50px !important;
+	width: 85%;
+	border: 2px solid #111;
+	text-align: center;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }

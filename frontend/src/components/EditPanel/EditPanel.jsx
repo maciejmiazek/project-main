@@ -28,8 +28,8 @@ function EditPanel({activeButton, buttonChangeClick, buttonText, formData, setFo
 	};
 
 	return (
-		<div className='workers-panel-box'>
-			<div className='workers-panel-action-buttons'>
+		<div className='panel-box'>
+			<div className='panel-action-buttons'>
 				<button
 					onClick={() => {
 						buttonChangeClick(0);
@@ -49,8 +49,11 @@ function EditPanel({activeButton, buttonChangeClick, buttonText, formData, setFo
 			</div>
 			<form onSubmit={createHandle}>
 				{endpoint === "/api/pracownicy" ? 
-				<EditPanelWorkers formData={formData['pracownicy']} handleChange={handleChange} /> : endpoint === "/api/maszyny" ?
-				<EditPanelMachines formData={formData['maszyny']} handleChange={handleChange} />: null}
+				<EditPanelWorkers formData={formData['pracownicy']} handleChange={handleChange} /> : 
+				endpoint === "/api/maszyny" ?
+				<EditPanelMachines formData={formData['maszyny']} handleChange={handleChange} /> :
+				endpoint === "/api/pracownicy" ? 
+				<EditPanelMachines formData={formData['planowanie']} handleChange={handleChange} /> : null }
 				<button type='submit'>{buttonText}</button>
 			</form>
 		</div>

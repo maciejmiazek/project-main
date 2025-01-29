@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";

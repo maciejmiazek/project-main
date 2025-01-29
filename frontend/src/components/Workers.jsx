@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import useCrud from "./hooks/UseCrud";
 import EditPanel from "./EditPanel/EditPanel";
 import { IconUser } from "@tabler/icons-react";
@@ -47,8 +47,8 @@ function Workers() {
 	};
 
 	return (
-		<div className='workers'>
-			<div className='workers-main'>
+		<>
+			<div className='data'>
 				{typeof(itemData) === 'object' ? itemData.map((item, i) => {
 					return (
 					<div key={i} className={`card-board ${activeButton === 1 ? 'edit' : ''}`} style={{border: cardId === i && activeButton === 1 ? '3px solid whitesmoke' : ''}} onClick={() => {editInsert(i)}}>
@@ -98,8 +98,8 @@ function Workers() {
 				}): console.log('server error')}
 			</div>
 			<EditPanel activeButton={activeButton} buttonChangeClick={buttonChangeClick} buttonText={buttonText} formData={formData} setFormData={setFormData} createHandle={createHandle} endpoint={endpoint}/>
-			<div className={`workers-alert ${alertIsVisible ? 'show' : ''}`}><p>{alertText}</p></div>
-		</div>
+			<div className={`alert ${alertIsVisible ? 'show' : ''}`}><p>{alertText}</p></div>
+		</>
 	);
 }
 

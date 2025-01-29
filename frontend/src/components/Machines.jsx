@@ -61,8 +61,8 @@ function Machines() {
 	};
 
 	return (
-		<div className='workers'>
-			<div className='workers-main'>
+		<>
+			<div className='data'>
 				{typeof itemData === "object"
 					? itemData.map((item, i) => {
 							return (
@@ -154,10 +154,10 @@ function Machines() {
 				createHandle={createHandle}
 				endpoint={endpoint}
 			/>
-			<div className={`workers-alert ${alertIsVisible ? "show" : ""}`}>
+			<div className={`alert ${alertIsVisible ? "show" : ""}`}>
 				<p>{alertText}</p>
 			</div>
-		</div>
+		</>
 	);
 }
 

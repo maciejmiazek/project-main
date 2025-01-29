@@ -1,58 +1,30 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./index.css";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 import Planning from "./components/Planning";
 import Workers from "./components/Workers";
 import Machines from "./components/Machines";
 import NoPage from "./components/NoPage";
+import "./App.css";
 
 const Magazyn = () => <h2>Magazyn</h2>;
 const Finanse = () => <h2>Finanse</h2>;
 
 function App() {
-	return (
-		<>
-			<Sidebar />
-			<main style={{ flex: 1}}>
-				<Routes>
-					<Route
-						path='/'
-						element={<Planning />}
-					/>
-					<Route
-						path='/planowanie'
-						element={<Planning />}
-					/>
-					<Route
-						path='/pracownicy'
-						element={<Workers />}
-					/>
-					<Route
-						path='/maszyny'
-						element={<Machines />}
-					/>
-					<Route
-						path='/magazyn'
-						element={<Magazyn />}
-					/>
-					<Route
-						path='/finanse'
-						element={<Finanse />}
-					/>
-					<Route
-						path='/wyloguj'
-						element={<NoPage />}
-					/>
-					<Route
-						path='*'
-						element={<NoPage />}
-					/>
-				</Routes>
-			</main>
-		</>
-	);
+  return (
+    <Routes>
+      {/* Po zalogowaniu używamy Layout */}
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Planning />} />
+        <Route path="planowanie" element={<Planning />} />
+        <Route path="pracownicy" element={<Workers />} />
+        <Route path="maszyny" element={<Machines />} />
+        <Route path="magazyn" element={<Magazyn />} />
+        <Route path="finanse" element={<Finanse />} />
+        <Route path="*" element={<NoPage />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
